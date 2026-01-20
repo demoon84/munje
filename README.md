@@ -107,7 +107,7 @@ Vercel에 자동 배포 설정:
 2. 환경 변수에 `GEMINI_API_KEY` 추가
 3. 배포 완료!
 
-**라이브 데모**: [https://math-friend.vercel.app](https://math-friend.vercel.app)
+**라이브 데모**: [https://munje.vercel.app](https://munje.vercel.app)
 
 ## 📝 사용 방법
 
