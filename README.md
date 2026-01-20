@@ -117,19 +117,3 @@ Vercel에 자동 배포 설정:
 4. AI가 분석 후 유사 문제 10개 생성
 5. 각 문제의 **정답 및 해설 보기** 클릭으로 답안 확인
 6. 필요시 **인쇄** 버튼으로 출력
-
-## 🤝 기여하기
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 라이선스
-
-MIT License - 자유롭게 사용, 수정, 배포 가능
-
----
-
-Made with ❤️ for students who want to practice math
