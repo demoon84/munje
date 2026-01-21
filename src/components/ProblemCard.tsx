@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ChevronUp, Copy, Check } from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 interface Question {
     question: string;
@@ -11,27 +11,14 @@ interface Question {
 
 export default function ProblemCard({ index, data }: { index: number; data: Question }) {
     const [isOpen, setIsOpen] = useState(false);
-    const [copied, setCopied] = useState(false);
-
-    const copyToClipboard = () => {
-        navigator.clipboard.writeText(`문제 ${index + 1}: ${data.question}\n정답: ${data.answer}`);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-    };
 
     return (
         <div className="bg-white rounded-2xl border border-[#e8eaed] overflow-hidden shadow-sm hover:shadow-md transition-shadow">
             <div className="p-4">
-                <div className="flex justify-between items-start gap-4 mb-3">
-                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-[#4285F4] to-[#A142F4] text-white text-sm font-semibold">
+                <div className="flex items-start gap-3 mb-3">
+                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-[#4285F4] to-[#A142F4] text-white text-sm font-semibold flex-shrink-0">
                         {index + 1}
                     </span>
-                    <button
-                        onClick={copyToClipboard}
-                        className="text-[#dadce0] hover:text-[#4285F4] transition-colors"
-                    >
-                        {copied ? <Check className="w-5 h-5 text-[#34A853]" /> : <Copy className="w-5 h-5" />}
-                    </button>
                 </div>
                 <p className="text-[#1f1f1f] font-medium leading-relaxed">
                     {data.question}
