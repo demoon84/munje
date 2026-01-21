@@ -3,7 +3,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // 모델 우선순위 (할당량 초과 시 다음 모델로 폴백)
 const MODELS = [
-    "gemini-3-flash",
+    "gemini-3-flash-preview",
     "gemini-2.5-flash",
     "gemini-2.5-flash-lite",
 ];
@@ -78,18 +78,23 @@ async function tryGenerateWithModel(
         return { success: true, data };
     } catch (error: any) {
         const errorMessage = error?.message || "";
-        const isQuotaError =
+        // 폴백이 필요한 오류: 할당량 초과, 과부하, 모델 없음
+        const shouldFallback =
             errorMessage.includes("429") ||
+            errorMessage.includes("503") ||
+            errorMessage.includes("404") ||
             errorMessage.includes("quota") ||
             errorMessage.includes("RESOURCE_EXHAUSTED") ||
-            errorMessage.includes("rate limit");
+            errorMessage.includes("rate limit") ||
+            errorMessage.includes("overloaded") ||
+            errorMessage.includes("not found");
 
         console.log(`Model ${modelName} failed:`, errorMessage.slice(0, 100));
 
         return {
             success: false,
             error: errorMessage,
-            isQuotaError
+            isQuotaError: shouldFallback
         };
     }
 }
